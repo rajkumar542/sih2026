@@ -1,4 +1,4 @@
-1.Who are we trying to help? Elderly people, specifically those suffering from dementia 
+1.Who are we trying to help? Elderly people, specifically those suffering from dementia
 
 2.Where are we focusing? The North Eastern Region (NER) of India.
 

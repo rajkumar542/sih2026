@@ -1,0 +1,292 @@
+
+
+Staging model
+
+Use GDS 7 stages internally (drives logic), expose 3 plain-language bands to families.
+
+┌──────────┬─────────────────┬───────────────────────────────────────┐
+│ Internal │  Family-facing  │         stages.txt equivalent         │
+├──────────┼─────────────────┼───────────────────────────────────────┤
+│ GDS 1–2  │ "Staying Sharp" │ (pre-clinical — your baseline window) │
+├──────────┼─────────────────┼───────────────────────────────────────┤
+│ GDS 3–4  │ Early           │ MCI → Early Dementia                  │
+├──────────┼─────────────────┼───────────────────────────────────────┤
+│ GDS 5–6  │ Middle          │ Moderate / Mid-Stage                  │
+├──────────┼─────────────────┼───────────────────────────────────────┤
+│ GDS 7    │ Late            │ Severe / Late-Stage                   │
+└──────────┴─────────────────┴───────────────────────────────────────┘
+
+---
+⚠ First — your two docs contradict each other at GDS 7
+
+Hardware Integration: "Discontinued: Patient no longer interacts with the application or devices directly."
+
+stages.txt: "the auditory cortex and musical memory networks are highly resilient and remain intact even in severe dementia… placed near the bed to play culturally familiar NER folk songs, prayers, or soothing regional sounds… proven to significantly reduce severe physical agitation."
+
+Your Care Guide independently backs the second: "musical memory networks remain remarkably well-preserved even in severe AD, largely escaping early cortical atrophy."
+
+Resolution — and this is the correct synthesis:
+
+▎ Patient interaction discontinues at GDS 7. Patient audio does not.
+
+The hardware doc was reasoning about touchscreens and wearables and over-generalized to "the app." Two of your three docs say the single most effective late-stage intervention is ambient culturally-familiar sound. The app doesn't stop — it stops having a screen.
+
+---
+Legend
+
+● primary  ◐ active, reduced  ○ background/optional  ▲ inverts (same module, new purpose)  — retired
+
+---
+(a) Cognitive games — the retirement schedule
+
+┌───────────────────────┬─────────────────────────┬─────┬─────┬─────┬─────┬─────┬─────┐
+│       Template        │         Domain          │  2  │  3  │  4  │  5  │  6  │  7  │
+├───────────────────────┼─────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Hold-the-Target       │ Attention               │  ●  │  ●  │  ◐  │  —  │  —  │  —  │
+├───────────────────────┼─────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Match-Pair            │ Short-term memory       │  ●  │  ●  │  ◐  │  ○  │  —  │  —  │
+├───────────────────────┼─────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Sort / Odd-One-Out    │ Pattern & object recog. │  ●  │  ●  │  ◐  │  ○  │  —  │  —  │
+├───────────────────────┼─────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Story-Then-Recall     │ Verbal / long-term      │  ●  │  ●  │  ◐  │  ▲  │  ○  │  ○  │
+├───────────────────────┼─────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Sequence-It           │ Daily routine recall    │  ●  │  ●  │  ●  │  ▲  │  ▲  │  —  │
+├───────────────────────┼─────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Who's This?           │ Long-term + social      │  ○  │  ●  │  ●  │  ●  │  ◐  │  —  │
+├───────────────────────┼─────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Reminisce-Tap         │ Emotional engagement    │  ○  │  ○  │  ●  │  ●  │  ▲  │  —  │
+├───────────────────────┼─────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Ambient Audio / Music │ Emotional               │  ○  │  ○  │  ○  │  ●  │  ●  │ ●●  │
+└───────────────────────┴─────────────────────────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+Abstract-reasoning games die first (attention, matching, sorting) — visuospatial decay at GDS 5 makes screen processing genuinely hard. Concrete, personal, auditory content survives longest. Music survives everything.
+
+---
+(b) AI modules
+
+┌───────────────────────────┬─────┬─────┬─────┬─────┬─────┬─────┐
+│          Module           │  2  │  3  │  4  │  5  │  6  │  7  │
+├───────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Ability tracker θ / DDA   │ ●*  │  ●  │  ●  │ ◐†  │  —  │  —  │
+├───────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Decline estimator         │  ●  │  ●  │  ●  │  ●  │  ◐  │  ○  │
+├───────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Frustration monitor       │  ○  │  ●  │  ●  │  ●  │  ○  │  —  │
+├───────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Stage-transition proposer │  ●  │  ●  │  ●  │  ●  │  ●  │  —  │
+└───────────────────────────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+* At GDS 2 the DDA's real job isn't difficulty — it's recording the baseline. Without it, every later "decline" number is meaningless. Most competing apps have no baseline, so their decline detection is decorative.
+
+† At GDS 5 the DDA stops raising difficulty entirely. It becomes a floor protector — its only job is preventing failure.
+
+---
+(c) Voice
+
+┌────────────────────────────────┬─────┬─────┬─────┬─────┬─────┬─────┐
+│            Channel             │  2  │  3  │  4  │  5  │  6  │  7  │
+├────────────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Voice output (recorded native) │  ○  │  ◐  │  ●  │ ●●  │ ●●  │ ●●  │
+├────────────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Keyword voice input            │  ○  │  ○  │  ◐  │  ◐  │  —  │  —  │
+├────────────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Distress phrase detector       │  —  │  ◐  │  ●  │  ●  │  ●  │ —‡  │
+└────────────────────────────────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+‡ Retired at GDS 7 — all verbal ability is lost.
+
+GDS 4 is the crossover where voice becomes the primary navigation channel, per the hardware doc.
+
+---
+(d) Cultural content
+
+┌──────────────────────────────┬─────┬─────┬─────┬─────┬─────┬─────┐
+│            Asset             │  2  │  3  │  4  │  5  │  6  │  7  │
+├──────────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Culture Pack — visuals       │  ●  │  ●  │  ●  │  ●  │  ◐  │  —  │
+├──────────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Culture Pack — audio         │  ○  │  ○  │  ◐  │  ●  │  ●  │ ●●  │
+├──────────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Memory Vault — photos        │  ○  │  ●  │  ●  │  ●  │  ●  │  ○  │
+├──────────────────────────────┼─────┼─────┼─────┼─────┼─────┼─────┤
+│ Memory Vault — family voices │  ○  │  ○  │  ◐  │  ●  │  ●  │ ●●  │
+└──────────────────────────────┴─────┴─────┴─────┴─────┴─────┴─────┘
+
+The arc worth building for: a granddaughter records a Voice Postcard at GDS 3. It's game content at GDS 4, comfort at GDS 5, and at GDS 7 it's the audio playing beside the bed — the one intervention still reaching them. Same data, three renderers, zero extra engineering. That's the payoff for building Memory Vault early.
+
+---
+(e) Reminders — recipient shifts
+
+┌──────────────────┬─────┬─────┬─────────────────┬───────────┬─────┬─────┐
+│     Reminder     │  2  │  3  │        4        │     5     │  6  │  7  │
+├──────────────────┼─────┼─────┼─────────────────┼───────────┼─────┼─────┤
+│ Medicine         │ ●P  │ ●P  │ ▲C-set / P-gets │ ●P +alert │ ▲C  │ ▲C  │
+├──────────────────┼─────┼─────┼─────────────────┼───────────┼─────┼─────┤
+│ Hydration        │  ○  │  ○  │        ◐        │     ●     │ ●●  │ ●●  │
+├──────────────────┼─────┼─────┼─────────────────┼───────────┼─────┼─────┤
+│ Daily activities │  ○  │  ●  │        ●        │ ▲scaffold │ ▲C  │  —  │
+├──────────────────┼─────┼─────┼─────────────────┼───────────┼─────┼─────┤
+│ Appointments     │ ●P  │ ●P  │       ▲C        │    ●C     │ ●C  │ ●C  │
+└──────────────────┴─────┴─────┴─────────────────┴───────────┴─────┴─────┘
+
+P = patient · C = caregiver
+
+Hydration escalates as everything else fades — research: interoceptive thirst awareness is lost, and dehydration in late-stage rapidly causes UTIs, delirium, and acute kidney injury. By GDS 7 it's one of the two things that matter.
+
+---
+(f) Caregiver dashboard
+
+┌─────────────────────────────┬───────┬─────┬─────┬─────┬─────┬─────┐
+│            View             │   2   │  3  │  4  │  5  │  6  │  7  │
+├─────────────────────────────┼───────┼─────┼─────┼─────┼─────┼─────┤
+│ Cognitive trends            │ ●base │  ●  │  ●  │  ◐  │  —  │  —  │
+├─────────────────────────────┼───────┼─────┼─────┼─────┼─────┼─────┤
+│ DICE behaviour log          │   —   │  ○  │  ◐  │ ●●  │ ●●  │  ◐  │
+├─────────────────────────────┼───────┼─────┼─────┼─────┼─────┼─────┤
+│ Sundowning heatmap          │   —   │  —  │  ○  │  ●  │  ●  │  ○  │
+├─────────────────────────────┼───────┼─────┼─────┼─────┼─────┼─────┤
+│ Safety alerts (fall/wander) │   —   │  —  │  ○  │  ●  │ ●●  │ —§  │
+├─────────────────────────────┼───────┼─────┼─────┼─────┼─────┼─────┤
+│ Nursing log (fluids/sleep)  │   —   │  —  │  —  │  ○  │  ●  │ ●●  │
+├─────────────────────────────┼───────┼─────┼─────┼─────┼─────┼─────┤
+│ Doctor Summary              │   —   │  ●  │  ●  │  ●  │  ●  │  ●  │
+├─────────────────────────────┼───────┼─────┼─────┼─────┼─────┼─────┤
+│ Caregiver wellbeing         │   ○   │  ◐  │  ●  │ ●●  │ ●●  │ ●●  │
+└─────────────────────────────┴───────┴─────┴─────┴─────┴─────┴─────┘
+
+§ Bedbound — fall risk ends.
+
+The dashboard peaks in complexity at GDS 5–6, exactly where stages.txt says "caregiver burden peaks." Then it simplifies into a nursing log.
+
+---
+(h) UI shell
+
+┌────────────────────┬─────┬──────────┬─────┬─────┬─────┬─────┐
+│      Property      │  2  │    3     │  4  │  5  │  6  │  7  │
+├────────────────────┼─────┼──────────┼─────┼─────┼─────┼─────┤
+│ Tiles on screen    │  9  │    6     │  4  │  2  │  0  │  0  │
+├────────────────────┼─────┼──────────┼─────┼─────┼─────┼─────┤
+│ Navigation depth   │  2  │    2     │  1  │  1  │  0  │  0  │
+├────────────────────┼─────┼──────────┼─────┼─────┼─────┼─────┤
+│ Fail states        │ on  │ softened │ off │ off │  —  │  —  │
+├────────────────────┼─────┼──────────┼─────┼─────┼─────┼─────┤
+│ Timers / scoring   │ on  │ generous │ off │ off │  —  │  —  │
+├────────────────────┼─────┼──────────┼─────┼─────┼─────┼─────┤
+│ Exit guard (PIN)   │  ○  │    ◐     │  ●  │  ●  │  ●  │  ●  │
+├────────────────────┼─────┼──────────┼─────┼─────┼─────┼─────┤
+│ Evening warm theme │  —  │    ○     │  ◐  │  ●  │  ●  │  ●  │
+└────────────────────┴─────┴──────────┴─────┴─────┴─────┴─────┘
+
+---
+Social + devices
+
+┌───────────────────────────┬─────┬─────┬─────┬────────┬─────┬──────┐
+│                           │  2  │  3  │  4  │   5    │  6  │  7   │
+├───────────────────────────┼─────┼─────┼─────┼────────┼─────┼──────┤
+│ Voice Postcards — receive │  ●  │  ●  │  ●  │   ●    │  ◐  │  ○   │
+├───────────────────────────┼─────┼─────┼─────┼────────┼─────┼──────┤
+│ Voice Postcards — send    │  ●  │  ●  │  ◐  │ ○1-tap │  —  │  —   │
+├───────────────────────────┼─────┼─────┼─────┼────────┼─────┼──────┤
+│ Group CST (CHW-led)       │  ○  │  ●  │  ●  │   ◐    │  —  │  —   │
+├───────────────────────────┼─────┼─────┼─────┼────────┼─────┼──────┤
+│ BLE band (sleep/activity) │  ○  │  ◐  │  ●  │   ●    │  ●  │  —¶  │
+├───────────────────────────┼─────┼─────┼─────┼────────┼─────┼──────┤
+│ Smart pillbox             │  —  │  ◐  │  ●  │   ●    │  ◐  │  —   │
+├───────────────────────────┼─────┼─────┼─────┼────────┼─────┼──────┤
+│ BLE object tag (keys)     │  —  │  ●  │  ●  │   ◐    │  —  │  —   │
+├───────────────────────────┼─────┼─────┼─────┼────────┼─────┼──────┤
+│ GPS geofence              │  —  │  —  │  ◐  │   ●    │ ●●  │  —   │
+├───────────────────────────┼─────┼─────┼─────┼────────┼─────┼──────┤
+│ mmWave fall/overstay      │  —  │  —  │  ○  │   ●    │ ●●  │ ◐bed │
+├───────────────────────────┼─────┼─────┼─────┼────────┼─────┼──────┤
+│ Audio-AR face naming      │  —  │  —  │  ●  │   ●    │  ◐  │  —   │
+├───────────────────────────┼─────┼─────┼─────┼────────┼─────┼──────┤
+│ NFC object triggers       │  —  │  ○  │  ●  │   ●    │  ◐  │  —   │
+└───────────────────────────┴─────┴─────┴─────┴────────┴─────┴──────┘
+
+¶ Research is explicit: wearables are removed at GDS 7 — unrecognized, cause distress.
+
+---
+What the app is at each stage
+
+| Stage | The
+Interrupted · What should Claude do instead?
+
+
+
+What the app is at each stage
+
+┌───────┬──────────────────────────────────────────────────────────────────┬────────────────────────────────────────┬───────────────────────────────┐
+│ Stage │                         In one sentence                          │              Hero feature              │     Who holds the device      │
+├───────┼──────────────────────────────────────────────────────────────────┼────────────────────────────────────────┼───────────────────────────────┤
+│ GDS 2 │ A brain-training app that is secretly recording a baseline       │ Full game suite                        │ Patient, alone                │
+├───────┼──────────────────────────────────────────────────────────────────┼────────────────────────────────────────┼───────────────────────────────┤
+│ GDS 3 │ An adaptive trainer that protects against anxiety                │ DDA + domain trends                    │ Patient, alone                │
+├───────┼──────────────────────────────────────────────────────────────────┼────────────────────────────────────────┼───────────────────────────────┤
+│ GDS 4 │ A voice-guided companion with scaffolding                        │ Sequence-It + voice                    │ Patient, caregiver configures │
+├───────┼──────────────────────────────────────────────────────────────────┼────────────────────────────────────────┼───────────────────────────────┤
+│ GDS 5 │ A reminiscence and calming tool + a behaviour-management console │ Reminisce-Tap + DICE log               │ Shared                        │
+├───────┼──────────────────────────────────────────────────────────────────┼────────────────────────────────────────┼───────────────────────────────┤
+│ GDS 6 │ An ambient comfort device + a safety net                         │ Music/photos + fall/wander alerts      │ Caregiver, mostly             │
+├───────┼──────────────────────────────────────────────────────────────────┼────────────────────────────────────────┼───────────────────────────────┤
+│ GDS 7 │ A speaker by the bed + a nursing notebook                        │ Family voices & folk songs + fluid log │ Caregiver only                │
+└───────┴──────────────────────────────────────────────────────────────────┴────────────────────────────────────────┴───────────────────────────────┘
+
+---
+⭑ The inversion table — this is the actual thesis
+
+Features that don't disappear — they reverse purpose. This is the strongest slide in your deck.
+
+┌──────────────┬────────────────────────────────┬───────────────────────────────────────┐
+│    Module    │         Early meaning          │             Late meaning              │
+├──────────────┼────────────────────────────────┼───────────────────────────────────────┤
+│ Sequence-It  │ Test: "put the steps in order" │ Scaffold: voice walks them through it │
+├──────────────┼────────────────────────────────┼───────────────────────────────────────┤
+│ DDA          │ Raises the challenge           │ Prevents any failure                  │
+├──────────────┼────────────────────────────────┼───────────────────────────────────────┤
+│ Reminders    │ Autonomy tool for the patient  │ Task list for the caregiver           │
+├──────────────┼────────────────────────────────┼───────────────────────────────────────┤
+│ Voice        │ Convenience                    │ Sole surviving channel                │
+├──────────────┼────────────────────────────────┼───────────────────────────────────────┤
+│ Memory Vault │ Game content                   │ Bedside therapeutic audio             │
+├──────────────┼────────────────────────────────┼───────────────────────────────────────┤
+│ Who's This?  │ Memory exercise                │ Anxiety relief during visits          │
+├──────────────┼────────────────────────────────┼───────────────────────────────────────┤
+│ Dashboard    │ Cognitive scorecard            │ Nursing log + remote-doctor report    │
+├──────────────┼────────────────────────────────┼───────────────────────────────────────┤
+│ Culture Pack │ Engagement / familiarity       │ Agitation reduction                   │
+├──────────────┼────────────────────────────────┼───────────────────────────────────────┤
+│ Music        │ Background flavour             │ The primary intervention              │
+└──────────────┴────────────────────────────────┴───────────────────────────────────────┘
+
+Nine features. Zero rebuilt. Each one is the same module reading a different CareState. That's why the kernel architecture matters — without it, this table is nine forks; with it, it's one subscription.
+
+---
+Always on, every stage
+
+┌──────────────────────────────────────┬──────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│              Always-on               │                                      What changes across stages                                      │
+├──────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Offline-first storage + sync         │ Only the transport degrades: WiFi → 4G → 2G SMS → CHW sneakernet                                     │
+├──────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Encryption at rest, per-patient keys │ Nothing — constant                                                                                   │
+├──────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ DPDP consent ledger                  │ Consent authority migrates to the legally authorized representative around GDS 4–5 as capacity fails │
+├──────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Audit log of dashboard access        │ Nothing — constant                                                                                   │
+├──────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Caregiver wellbeing check-in         │ Intensifies monotonically — never retires                                                            │
+├──────────────────────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ ICMR HITL guardrail                  │ The app never diagnoses at any stage; stage changes are proposed, never applied silently             │
+└──────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+---
+Three things this mapping tells you
+
+1. GDS 5 is the hinge. Six things flip at once: abstract games retire, voice becomes primary, fail states vanish, DICE becomes the dashboard's centre, the sundowning response activates, and reminders begin re-routing to the caregiver. If you demo one transition, demo 4 → 5.
+
+2. The problem statement's "cognitive gaming" covers GDS 2–4 only. That's roughly the first third of the journey. Everything after is reminiscence, ambient audio, safety, and caregiver tooling. You're not out of scope — you're honouring "long-term cognitive engagement, emotional well-being" from the closing line, which has no feature letter and which games alone cannot deliver.
+
+3. Your cheapest features have the longest lifespans. Recorded family voices and Culture Pack audio are the only patient-facing things still running at GDS 7 — and they cost you recording time, not engineering. The AR glasses tier, the most expensive thing in the research, is useful for roughly GDS 4–6 and useless at both ends.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
